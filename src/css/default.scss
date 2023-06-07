@@ -1,5 +1,6 @@
-$colorList: (
+$colors: (
   'negative': '#FF4B58',
+  'yellow_01': '#ffc500',
   'grey_01': '#333333',  
   'grey_02': '#666666',
   'grey_03': '#999999',
@@ -23,7 +24,7 @@ $colorList: (
 };
 
 @each $name,
-$color in $colorList {
+$color in $colors {
   .border-#{$name} {
     border: 1px solid unquote($color);
   }
@@ -37,6 +38,36 @@ $color in $colorList {
   }
 
   @include position($name, $color);
+};
+
+$fontSize: (
+  '12': 12,
+  '13': 13,
+  '14': 14,
+  '15': 15,
+  '16': 16,
+);
+$fontWeight: (
+  '400': 400,
+  '500': 500,
+  '600': 600,
+  '700': 700,
+);
+
+@mixin fonts($size, $weight) {
+  font-size: $size + 'px';
+  font-weight: $weight;
+};
+
+@each $sizeKey,
+$size in $fontSize {
+
+  @each $weightKey,
+  $weight in $fontWeight {
+    .font-#{$sizeKey}-#{$weightKey} {
+      @include fonts(#{$size}, #{$weight});
+    }
+  }
 };
 
 .border-none {
