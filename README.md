@@ -1,24 +1,30 @@
-# idus
+# 백패커 코드테스트
 
-## Project setup
-```
-yarn install
-```
+## ~ 6/13
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## 요구사항
 
-### Compiles and minifies for production
-```
-yarn build
-```
+- IE10 +
+- 웹 접근성 준수
+- ES6, SASS 또는 번들링이 필요한 라이브러리 사용 시 자동화 세팅도 같이 제출
 
-### Lints and fixes files
-```
-yarn lint
-```
+### 과제 1 카드 UI
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- [ ] 세로형 & 가로형 레이아웃
+- [ ] 카드 컴포넌트 제작
+  - [ ] 하단 텍스트 예외처리
+  - [ ] 하단 별점 예외처리
+- [ ] 별점은 정수
+- [ ] 카드 크기 가변, 이미지 영역은 비율 유지
+- [ ] 모든 카드의 요소를 담은 컴포넌트는 필수
+  - [ ] 세로 & 가로 한 벌씩
+  - [ ] 예외처리 파트는 선택
+
+### 과제 2 입력 폼 UI
+
+- [ ] 텍스트 입력 시 남은 글자 수 (최대 글자 수 설정 필요)
+- [ ] 내용 없으면 placeholder 내용 변경시 save 버튼 활성화
+  - [ ] 입력중 상태 필요
+  - [ ] 초기값과 비교하여 disable
+- [ ] 비활성화 상태
+- [ ] 읽기 전용 상태
