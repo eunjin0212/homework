@@ -1,0 +1,44 @@
+$colorList: (
+  'negative': '#FF4B58',
+  'grey_01': '#333333',  
+  'grey_02': '#666666',
+  'grey_03': '#999999',
+  'grey_04': '#d9d9d9',
+  'grey_05': '#f8f9fb',
+);
+
+@mixin position($name, $color) {
+  $positions: (
+    'top',
+    'right',
+    'left',
+    'bottom'
+  );
+
+  @each $posi in $positions {
+    .border-#{$posi}-#{$name} {
+      border-#{$posi}: 1px solid unquote($color);
+    }
+  }
+};
+
+@each $name,
+$color in $colorList {
+  .border-#{$name} {
+    border: 1px solid unquote($color);
+  }
+
+  .text-#{$name} {
+    color: unquote($color);
+  }
+
+  .bg-#{$name} {
+    background-color: unquote($color);
+  }
+
+  @include position($name, $color);
+};
+
+.border-none {
+  border: none;
+}
