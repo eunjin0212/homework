@@ -1,6 +1,7 @@
 <template>
   <div class="card-compoent">
-    <img :src="cardContent.product.src" :alt="cardContent.product.title" />
+    <img :src="cardContent.product.src"
+      :alt="cardContent.product.title" width="184" height="184" />
     <span class="card-store-name text-grey_03 font-12-400">{{ cardContent.label }} </span>
     <strong class="card-product-title text-grey_01 font-13-400">
       {{ cardContent.product.title }}

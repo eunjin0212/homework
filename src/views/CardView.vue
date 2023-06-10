@@ -7,6 +7,7 @@ import { defineComponent, ref } from 'vue';
 import Card from '@/components/Card.vue';
 import type { Ref } from 'vue';
 import type { ICardData } from '@/types/card.type';
+import logo from '@/assets/logo.png';
 
 export default defineComponent({
   name: 'CardView',
@@ -15,7 +16,7 @@ export default defineComponent({
     const cardItem:Ref<ICardData> = ref({
       label: '보리네',
       product: {
-        src: '',
+        src: logo,
         title: '강아지가 좋아하는 수제 간식',
         hilight: 8900,
         crossOut: 12900,
