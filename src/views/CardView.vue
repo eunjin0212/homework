@@ -1,5 +1,20 @@
 <template>
-  <Card :cardData="cardItem" />
+  <div class="cards vertical" :style="`--data-length: ${cardVerticalItems.length}`">
+    <Card
+      v-for="cardItem in cardVerticalItems"
+      :key="cardItem.label"
+      :cardData="cardItem"
+      cardType="vertical"
+    />
+  </div>
+  <div class="cards horizontal">
+    <Card
+      v-for="cardItem in cardHorizontalItems"
+      :key="cardItem.title"
+      :cardData="cardItem"
+      cardType="horizontal"
+    />
+  </div>
 </template>
 
 <script lang="ts">
@@ -7,27 +22,40 @@ import { defineComponent, ref } from 'vue';
 import Card from '@/components/Card.vue';
 import type { Ref } from 'vue';
 import type { ICardData } from '@/types/card.type';
-import logo from '@/assets/logo.png';
+import { cardVerticalMockUp, cardHorizontalMockUp } from '@/mocks/cardData';
 
 export default defineComponent({
   name: 'CardView',
   components: { Card },
   setup() {
-    const cardItem:Ref<ICardData> = ref({
-      label: '보리네',
-      product: {
-        src: logo,
-        title: '강아지가 좋아하는 수제 간식',
-        hilight: 8900,
-        crossOut: 12900,
-        rating: 4,
-        comment: '저희집 강아지가 정말 좋아해요!',
-      },
-    });
+    const cardVerticalItems:Ref<ICardData[]> = ref(cardVerticalMockUp);
+    const cardHorizontalItems:Ref<ICardData[]> = ref(cardHorizontalMockUp);
+
     return {
-      cardItem,
+      cardVerticalItems,
+      cardHorizontalItems,
     };
   },
 });
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import '@/css/extends.scss';
+@import '@/css/variables.scss';
+
+.cards {
+  @extend .grid;
+  $gutter: $size12;
+  grid-gap: $gutter;
+  &.vertical {
+    $minmax: $size180, $size216;
+    -ms-grid-columns: repeat(auto-fill, minmax($minmax));
+    grid-template-columns: repeat(auto-fill, minmax($minmax));
+    margin-bottom: $gutter;
+  }
+  &.horizontal {
+    $minmax: $size360, $size540;
+    -ms-grid-columns: repeat(auto-fill, minmax($minmax));
+    grid-template-columns: repeat(auto-fill, minmax($minmax));
+  }
+}
+</style>

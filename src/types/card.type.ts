@@ -1,11 +1,10 @@
 export interface ICardData {
-  label: string;
-  product: {
-    src: string;
-    title: string;
-    hilight: number;
-    crossOut: number;
-    rating?: number;
-    comment?: string;
-  };
+  src: string;
+  title: string;
+  label?: string;
+  hilight?: string;
+  crossOut?: string;
+  rating?: number;
+  comment?: string;
+  info?: string;
 }

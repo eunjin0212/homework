@@ -1,7 +1,10 @@
+/* Browsers: last 10 version */
+@import './variables.scss';
+
 $colors: (
   'negative': '#FF4B58',
   'yellow_01': '#ffc500',
-  'grey_01': '#333333',  
+  'grey_01': '#333333',
   'grey_02': '#666666',
   'grey_03': '#999999',
   'grey_04': '#d9d9d9',
@@ -10,6 +13,7 @@ $colors: (
 
 @mixin position($name, $color) {
   $positions: (
+    'all',
     'top',
     'right',
     'left',
@@ -18,16 +22,19 @@ $colors: (
 
   @each $posi in $positions {
     .border-#{$posi}-#{$name} {
-      border-#{$posi}: 1px solid unquote($color);
+      @if($posi =='all') {
+        border: 1px solid unquote($color);
+      }
+
+      @else {
+        border-#{$posi}: 1px solid unquote($color);
+      }
     }
   }
 };
 
 @each $name,
 $color in $colors {
-  .border-#{$name} {
-    border: 1px solid unquote($color);
-  }
 
   .text-#{$name} {
     color: unquote($color);
@@ -41,11 +48,11 @@ $color in $colors {
 };
 
 $fontSize: (
-  '12': 12,
-  '13': 13,
-  '14': 14,
-  '15': 15,
-  '16': 16,
+  '12': 0.75,
+  '13': 0.813,
+  '14': 0.875,
+  '15': 0.938,
+  '16': 1,
 );
 $fontWeight: (
   '400': 400,
@@ -55,7 +62,7 @@ $fontWeight: (
 );
 
 @mixin fonts($size, $weight) {
-  font-size: $size + 'px';
+  font-size: $size + 'rem';
   font-weight: $weight;
 };
 
@@ -69,7 +76,3 @@ $size in $fontSize {
     }
   }
 };
-
-.border-none {
-  border: none;
-}

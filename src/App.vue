@@ -8,7 +8,12 @@
 </template>
 
 <style lang="scss">
-@import '@/css/default.scss';
+@import '@/css/classes.scss';
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
