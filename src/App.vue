@@ -4,7 +4,7 @@
     <router-link to="/cards">Card</router-link> |
     <router-link to="/inputs">Input</router-link>
   </nav>
-  <router-view/>
+  <router-view />
 </template>
 
 <style lang="scss">
