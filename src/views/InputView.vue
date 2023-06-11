@@ -1,8 +1,10 @@
 <template>
-  <Input v-model="inputItem" />
-  <Input v-model="inputMaxlengthItem" :maxlength="10" @handleClick="handleClick" />
-  <Input v-model="inputDisableItem" :maxlength="500" disabled placeholder="disable" />
-  <Input v-model="inputReadonlyItem" :maxlength="500" readonly placeholder="readonly" />
+  <div class="inputs flex flex-column">
+    <Input v-model="inputItem" />
+    <Input v-model="inputMaxlengthItem" :maxlength="10" @handleClick="handleClick" />
+    <Input v-model="inputDisableItem" :maxlength="500" disabled placeholder="disable" />
+    <Input v-model="inputReadonlyItem" :maxlength="500" readonly placeholder="readonly" />
+  </div>
 </template>
 
 <script lang="ts">
@@ -33,4 +35,12 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+@import '@/css/variables.scss';
+
+.inputs {
+  > .input-compoent {
+    margin-bottom: $size12;
+  }
+}
+</style>
