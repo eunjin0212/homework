@@ -1,16 +1,81 @@
 <template>
-  <div>input</div>
+  <div class="input-compoent">
+    <div class="input-wrapper">
+      <textarea
+        :value="inputContent"
+        type="text"
+        aria-label="input"
+        :maxlength="maxlength"
+        :disabled="disabled"
+        :readonly="readonly"
+        :placeholder="placeholder"
+        @input="handleChange"
+        />
+      <div v-if="maxlength">
+        {{ count }} / <span>{{ maxlength - count }}</span>
+      </div>
+    </div>
+    <button
+      type="button"
+      v-if="!disabled && !readonly"
+      @click="() => $emit('handleClick', inputContent)"
+      :disabled="isDisabled"
+    >
+      SAVE
+    </button>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref, computed } from 'vue';
 
 export default defineComponent({
   name: 'InputComponent',
-  setup() {
-    return {};
+  props: {
+    modelValue: {
+      type: String,
+      default: '',
+      required: true,
+    },
+    maxlength: {
+      type: Number || undefined,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    readonly: {
+      type: Boolean,
+      default: false,
+    },
+    placeholder: {
+      type: String,
+      default: '내용을 입력해주세요',
+    },
+  },
+  setup(props) {
+    const inputContent = ref(props.modelValue);
+    // 입력중인 상태 이전 상태와 다르면 입력중인 것으로 간주
+    // 비활성화 상태 : 입력중, 이전 값과 같은 값, 값이 없으면 비활성화
+    const isDisabled = computed(() => !inputContent.value
+    || (props.modelValue === inputContent.value));
+
+    function handleChange(event:Event) {
+      const target = event.target as HTMLTextAreaElement;
+      // 한글인 경우 maxlength를 넘음
+      if (props.maxlength && (target.value.length > Number(props.maxlength))) {
+        target.value = target.value.slice(0, target.value.length - 1);
+      }
+      inputContent.value = target.value;
+    }
+    return {
+      inputContent,
+      count: computed(() => inputContent.value.length),
+      handleChange,
+      isDisabled,
+    };
   },
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss"></style>
