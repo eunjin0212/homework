@@ -1,16 +1,22 @@
 <template>
   <div
-    :class="cardType"
-    class="card-compoent bg-grey_05 border-all-grey_04"
+    :class="[
+      cardType,
+      cardType === 'vertical' ? 'inline-flex flex-column' : 'grid',
+    ]"
+    class="card-compoent bg-grey_06 border-all-grey_04 height-fit-content"
   >
-    <figure>
+    <figure class="inline-flex justify-center items-center">
       <img
         :src="cardContent.src"
         :alt="cardContent.title"
         class="card-img"
       />
     </figure>
-    <div class="card-contents-wrapper">
+    <div
+      class="card-contents-wrapper inline-flex flex-column"
+      :class="{'flex justify-evenly' : cardType === 'horizontal'}"
+    >
       <span
         v-if="cardContent.label"
         class="card-store-name text-grey_03 font-12-400"
@@ -18,6 +24,7 @@
         {{ cardContent.label }}
       </span>
       <strong
+        :class="{'height-fit-content' : cardType === 'horizontal'}"
         class="product-title text-grey_01 font-14-500 ellipsis-1"
       >
         {{ cardContent.title }}
@@ -41,15 +48,17 @@
       </div>
       <div
         v-if="cardContent.rating || (cardContent.comment && cardType === 'vertical')"
-        class="card-multiple-wrapper"
+        class="card-multiple-wrapper inline-flex flex-column"
         :class="[
           cardType,
-          {'border-top-grey_04': cardType === 'vertical'}
+          cardType === 'vertical'
+            ? 'border-top-grey_04 justify-center'
+            : 'flex-row height-fit-content'
         ]"
       >
         <div
           v-if="cardContent.rating"
-          class="card-rating-wrapper"
+          class="card-rating-wrapper width-fit-content"
         >
           <span
             v-for="rating in 5"
@@ -120,22 +129,16 @@ export default defineComponent({
 @import '@/css/variables.scss';
 
 .card-compoent {
-  @extend .height-fit-content;
   border-radius: $size4;
   overflow: hidden;
   > figure {
     margin: 0;
-    @extend .inline-flex;
-    @extend .justify-center;
-    @extend .items-center;
     > .card-img {
       width: 100%;
       height: auto;
     }
   }
   .card-contents-wrapper {
-    @extend .inline-flex;
-    @extend .flex-column;
     text-align: left;
     width: 100%;
     height: 100%;
@@ -162,11 +165,10 @@ export default defineComponent({
 
     $size: $size15;
     .card-multiple-wrapper {
-      height: 3.5rem;
-      @extend .inline-flex;
-      @extend .flex-column;
+      &.vertical {
+        height: 3.5rem;
+      }
       .card-rating-wrapper {
-        @extend .width-fit-content;
         height: $size;
         display: inline-block;
         .product-rating {
@@ -184,12 +186,7 @@ export default defineComponent({
       .with-rating {
         padding-top: $size8;
       }
-      &.vertical {
-        @extend .justify-center;
-      }
       &.horizontal {
-        @extend .flex-row;
-        @extend .height-fit-content;
         > .product-author {
           padding-left: $size6;
           margin-left: $size6;
@@ -197,22 +194,10 @@ export default defineComponent({
       }
     }
   }
-
-  &.vertical {
-    @extend .inline-flex;
-    @extend .flex-column;
-  }
   &.horizontal {
-    @extend .grid;
     -ms-grid-columns: 40% 60%;
     grid-template-columns: 40% 60%;
     .card-contents-wrapper {
-      @extend .flex;
-      @extend .flex-column;
-      @extend .justify-evenly;
-      .product-title {
-        @extend .height-fit-content;
-      }
       .product-comment {
         padding: 0 0 0 $size4;
         margin-left: $size4;

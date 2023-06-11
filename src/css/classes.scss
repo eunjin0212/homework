@@ -2,13 +2,16 @@
 @import './variables.scss';
 
 $colors: (
+  'white': 'white',
   'negative': '#FF4B58',
-  'yellow_01': '#ffc500',
+  'positive': '#0075FF',
+  'yellow_01': '#FFC500',
   'grey_01': '#333333',
   'grey_02': '#666666',
   'grey_03': '#999999',
-  'grey_04': '#d9d9d9',
-  'grey_05': '#f8f9fb',
+  'grey_04': '#D9D9D9',
+  'grey_05': '#E1E1E1',
+  'grey_06': '#F8F9FB',
 );
 
 @mixin position($name, $color) {
