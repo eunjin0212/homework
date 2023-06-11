@@ -2,7 +2,7 @@
   <div class="input-compoent flex">
     <div
       :class="[
-        { 'bg-grey_05': disabled },
+        { 'bg-grey_06' : disabled },
         !isDisabled ? 'border-all-positive' : 'border-all-grey_02'
       ]"
       class="input-wrapper"
@@ -18,14 +18,18 @@
         @input="handleChange"
         :name="inputName"
       />
-      <div v-if="maxlength">
+      <div
+        v-if="maxlength"
+        class="input-counter"
+        :class="{ 'text-grey_04' : disabled || readonly }"
+      >
         {{ count }} / <span>{{ maxlength - count }}</span>
       </div>
     </div>
     <button
       :class="!isDisabled
         ? 'border-all-positive text-positive bg-white'
-        : 'border-all-grey_02 text-grey_02 bg-grey_05'
+        : 'border-all-grey_02 text-grey_02 bg-grey_06'
       "
       type="button"
       v-if="!disabled && !readonly"
@@ -104,6 +108,7 @@ export default defineComponent({
     overflow: hidden;
     border-radius: $size4;
     padding: $size8 $size10;
+    position: relative;
     > textarea {
       border: none;
       height: 100%;
@@ -114,6 +119,11 @@ export default defineComponent({
       &:focus, &:focus-visible {
         outline: none;
       }
+    }
+    .input-counter {
+      position: absolute;
+      bottom: $size8;
+      right: $size10;
     }
   }
   > button {

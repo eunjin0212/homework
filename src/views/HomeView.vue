@@ -1,5 +1,6 @@
 <template>
   <div>백패커 코드테스트 김은진</div>
+  <br />
   <CardView />
   <br />
   <InputView />

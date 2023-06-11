@@ -1,5 +1,5 @@
 <template>
-  <div class="cards vertical" :style="`--data-length: ${cardVerticalItems.length}`">
+  <div class="cards vertical">
     <Card
       v-for="cardItem in cardVerticalItems"
       :key="cardItem.label"
