@@ -16,6 +16,7 @@
         :readonly="readonly"
         :placeholder="placeholder"
         @input="handleChange"
+        :name="inputName"
       />
       <div v-if="maxlength">
         {{ count }} / <span>{{ maxlength - count }}</span>
@@ -61,6 +62,10 @@ export default defineComponent({
     placeholder: {
       type: String,
       default: '내용을 입력해주세요',
+    },
+    inputName: {
+      type: String,
+      default: 'input',
     },
   },
   setup(props) {
