@@ -4,7 +4,7 @@
       cardType,
       cardType === 'vertical' ? 'inline-flex flex-column' : 'grid',
     ]"
-    class="card-compoent bg-grey_06 border-all-grey_04 height-fit-content"
+    class="card-compoent bg-grey_07 border-all-grey_05 height-fit-content"
   >
     <figure class="inline-flex justify-center items-center">
       <img
@@ -15,7 +15,7 @@
     </figure>
     <div
       class="card-contents-wrapper inline-flex flex-column"
-      :class="{'flex justify-evenly' : cardType === 'horizontal'}"
+      :class="{ 'flex justify-evenly' : cardType === 'horizontal' }"
     >
       <span
         v-if="cardContent.label"
@@ -24,7 +24,7 @@
         {{ cardContent.label }}
       </span>
       <strong
-        :class="{'height-fit-content' : cardType === 'horizontal'}"
+        :class="{ 'height-fit-content' : cardType === 'horizontal' }"
         class="product-title text-grey_01 font-14-500 ellipsis-1"
       >
         {{ cardContent.title }}
@@ -52,7 +52,7 @@
         :class="[
           cardType,
           cardType === 'vertical'
-            ? 'border-top-grey_04 justify-center'
+            ? 'border-top-grey_05 justify-center'
             : 'flex-row height-fit-content'
         ]"
       >
@@ -66,7 +66,7 @@
             class="product-rating"
             :class="cardContent.rating && (rating <= cardContent.rating)
             ? 'bg-yellow_01'
-            : 'bg-grey_04'"
+            : 'bg-grey_05'"
           >
           </span>
         </div>
@@ -74,7 +74,7 @@
           v-if="cardContent.comment"
           :class="{
             'with-rating' : cardContent.rating,
-            'border-left-grey_04' : cardType !== 'vertical'
+            'border-left-grey_05' : cardType !== 'vertical'
           }"
           class="product-comment ellipsis-1 font-12-400"
         >

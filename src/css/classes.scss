@@ -9,9 +9,10 @@ $colors: (
   'grey_01': '#333333',
   'grey_02': '#666666',
   'grey_03': '#999999',
-  'grey_04': '#D9D9D9',
-  'grey_05': '#E1E1E1',
-  'grey_06': '#F8F9FB',
+  'grey_04': '#AAAAAA',
+  'grey_05': '#D9D9D9',
+  'grey_06': '#E1E1E1',
+  'grey_07': '#F8F9FB',
 );
 
 @mixin position($name, $color) {
