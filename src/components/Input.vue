@@ -2,8 +2,8 @@
   <div class="input-compoent flex">
     <div
       :class="[
-        { 'bg-grey_06' : disabled },
-        !isDisabled ? 'border-all-positive' : 'border-all-grey_02'
+        { 'bg-grey_06': disabled },
+        !isDisabled ? 'border-all-positive' : 'border-all-grey_02',
       ]"
       class="input-wrapper"
     >
@@ -21,15 +21,16 @@
       <div
         v-if="maxlength"
         class="input-counter"
-        :class="{ 'text-grey_04' : disabled || readonly }"
+        :class="{ 'text-grey_04': disabled || readonly }"
       >
         {{ count }} / <span>{{ maxlength - count }}</span>
       </div>
     </div>
     <button
-      :class="!isDisabled
-        ? 'border-all-positive text-positive bg-white'
-        : 'border-all-grey_02 text-grey_02 bg-grey_06'
+      :class="
+        !isDisabled
+          ? 'border-all-positive text-positive bg-white'
+          : 'border-all-grey_02 text-grey_02 bg-grey_06'
       "
       type="button"
       v-if="!disabled && !readonly"
@@ -74,15 +75,10 @@ export default defineComponent({
   },
   setup(props) {
     const inputContent = ref(props.modelValue);
-    // 입력중인 상태 이전 상태와 다르면 입력중인 것으로 간주
-    // 비활성화 상태 : 입력중, 이전 값과 같은 값, 값이 없으면 비활성화
-    const isDisabled = computed(() => !inputContent.value
-    || (props.modelValue === inputContent.value));
-
-    function handleChange(event:Event) {
+    function handleChange(event: Event) {
       const target = event.target as HTMLTextAreaElement;
       // 한글인 경우 maxlength를 넘음
-      if (props.maxlength && (target.value.length > Number(props.maxlength))) {
+      if (props.maxlength && target.value.length > +props.maxlength) {
         target.value = target.value.slice(0, target.value.length - 1);
       }
       inputContent.value = target.value;
@@ -91,15 +87,17 @@ export default defineComponent({
       inputContent,
       count: computed(() => inputContent.value.length),
       handleChange,
-      isDisabled,
+      // 입력중인 상태 이전 상태와 다르면 입력중인 것으로 간주
+      // 비활성화 상태 : 입력중, 이전 값과 같은 값, 값이 없으면 비활성화
+      isDisabled: computed(() => !inputContent.value || props.modelValue === inputContent.value),
     };
   },
 });
 </script>
 
 <style lang="scss">
-@import '@/css/extends.scss';
-@import '@/css/variables.scss';
+@import "@/css/extends.scss";
+@import "@/css/variables.scss";
 
 .input-compoent {
   .input-wrapper {
@@ -116,7 +114,8 @@ export default defineComponent({
       width: 100%;
       padding: 0;
       background-color: transparent;
-      &:focus, &:focus-visible {
+      &:focus,
+      &:focus-visible {
         outline: none;
       }
     }
