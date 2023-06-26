@@ -8,8 +8,8 @@
   >
     <figure class="inline-flex justify-center items-center">
       <img
-        :src="cardContent.src"
-        :alt="cardContent.title"
+        :src="cardData.src"
+        :alt="cardData.title"
         class="card-img"
       />
     </figure>
@@ -18,36 +18,36 @@
       :class="{ 'flex justify-evenly' : cardType === 'horizontal' }"
     >
       <span
-        v-if="cardContent.label"
+        v-if="cardData.label"
         class="card-store-name text-grey_03 font-12-400"
       >
-        {{ cardContent.label }}
+        {{ cardData.label }}
       </span>
       <strong
         :class="{ 'height-fit-content' : cardType === 'horizontal' }"
         class="product-title text-grey_01 font-14-500 ellipsis-1"
       >
-        {{ cardContent.title }}
+        {{ cardData.title }}
       </strong>
       <span
-        v-if="cardContent.info"
+        v-if="cardData.info"
         class="product-comment ellipsis-3 font-12-400"
       >
-        {{ cardContent.info }}
+        {{ cardData.info }}
       </span>
       <div
         v-if="cardType === 'vertical'"
         class="product-price font-15-700"
       >
         <span class="text-negative">
-          {{ cardContent.hilight?.toLocaleString() }}
+          {{ cardData.hilight?.toLocaleString() }}
         </span>
         <s class="text-grey_03">
-          {{ cardContent.crossOut?.toLocaleString() }}
+          {{ cardData.crossOut?.toLocaleString() }}
         </s>
       </div>
       <div
-        v-if="cardContent.rating || (cardContent.comment && cardType === 'vertical')"
+        v-if="cardData.rating || (cardData.comment && cardType === 'vertical')"
         class="card-multiple-wrapper inline-flex flex-column"
         :class="[
           cardType,
@@ -57,28 +57,28 @@
         ]"
       >
         <div
-          v-if="cardContent.rating"
+          v-if="cardData.rating"
           class="card-rating-wrapper width-fit-content"
         >
           <span
             v-for="rating in 5"
             :key="rating"
             class="product-rating"
-            :class="cardContent.rating && (rating <= cardContent.rating)
+            :class="cardData.rating && (rating <= cardData.rating)
             ? 'bg-yellow_01'
             : 'bg-grey_05'"
           >
           </span>
         </div>
         <span
-          v-if="cardContent.comment"
+          v-if="cardData.comment"
           :class="{
-            'with-rating' : cardContent.rating,
+            'with-rating' : cardData.rating,
             'border-left-grey_05' : cardType !== 'vertical'
           }"
           class="product-comment ellipsis-1 font-12-400"
         >
-          {{ cardContent.comment }}
+          {{ cardData.comment }}
         </span>
       </div>
     </div>
@@ -86,7 +86,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import { defineComponent } from 'vue';
 import type { PropType } from 'vue';
 import type { ICardData } from '@/types/card.type';
 
@@ -113,10 +113,6 @@ export default defineComponent({
       type: String as PropType<'vertical' | 'horizontal'>,
       default: 'vertical',
     },
-  },
-  setup(props) {
-    const cardContent = computed(() => props.cardData);
-    return { cardContent };
   },
 });
 </script>

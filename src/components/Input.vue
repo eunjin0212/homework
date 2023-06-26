@@ -23,7 +23,7 @@
         class="input-counter"
         :class="{ 'text-grey_04': disabled || readonly }"
       >
-        {{ count }} / <span>{{ maxlength - count }}</span>
+        {{ inputContent.length }} / <span>{{ maxlength - inputContent.length }}</span>
       </div>
     </div>
     <button
@@ -85,7 +85,6 @@ export default defineComponent({
     }
     return {
       inputContent,
-      count: computed(() => inputContent.value.length),
       handleChange,
       // 입력중인 상태 이전 상태와 다르면 입력중인 것으로 간주
       // 비활성화 상태 : 입력중, 이전 값과 같은 값, 값이 없으면 비활성화
