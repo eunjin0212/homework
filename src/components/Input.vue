@@ -2,7 +2,7 @@
   <div class="input-compoent flex">
     <div
       :class="[
-        { 'bg-grey_06' : disabled },
+        { 'bg-grey_06': disabled },
         !isDisabled ? 'border-all-positive' : 'border-all-grey_02'
       ]"
       class="input-wrapper"
@@ -21,7 +21,7 @@
       <div
         v-if="maxlength"
         class="input-counter"
-        :class="{ 'text-grey_04' : disabled || readonly }"
+        :class="{ 'text-grey_04': disabled || readonly }"
       >
         {{ count }} / <span>{{ maxlength - count }}</span>
       </div>
