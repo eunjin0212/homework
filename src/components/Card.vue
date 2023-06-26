@@ -86,7 +86,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue';
+import { defineComponent, computed } from 'vue';
 import type { PropType } from 'vue';
 import type { ICardData } from '@/types/card.type';
 
@@ -115,10 +115,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const cardContent = ref(props.cardData);
-    watch(() => props.cardData, (newValue) => {
-      cardContent.value = newValue;
-    });
+    const cardContent = computed(() => props.cardData);
     return { cardContent };
   },
 });
