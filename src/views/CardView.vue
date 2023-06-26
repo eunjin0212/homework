@@ -1,16 +1,16 @@
 <template>
   <div class="cards vertical">
     <Card
-      v-for="cardItem in cardVerticalItems"
-      :key="cardItem.label"
+      v-for="(cardItem, idx) in cardVerticalItems"
+      :key="`${cardItem.label}_${idx}`"
       :cardData="cardItem"
       cardType="vertical"
     />
   </div>
   <div class="cards horizontal">
     <Card
-      v-for="cardItem in cardHorizontalItems"
-      :key="cardItem.title"
+      v-for="(cardItem, idx) in cardHorizontalItems"
+      :key="`${cardItem.title}_${idx}`"
       :cardData="cardItem"
       cardType="horizontal"
     />
