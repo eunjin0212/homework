@@ -6,13 +6,11 @@
     ]"
     class="card-compoent bg-grey_07 border-all-grey_05 height-fit-content"
   >
-    <figure class="inline-flex justify-center items-center">
-      <img
-        :src="cardData.src"
-        :alt="cardData.title"
-        class="card-img"
-      />
-    </figure>
+    <img
+      :src="cardData.src"
+      :alt="cardData.title"
+      class="card-img"
+    />
     <div
       class="card-contents-wrapper inline-flex flex-column"
       :class="{ 'flex justify-evenly' : cardType === 'horizontal' }"
@@ -124,12 +122,9 @@ export default defineComponent({
 .card-compoent {
   border-radius: $size4;
   overflow: hidden;
-  > figure {
-    margin: 0;
-    > .card-img {
-      width: 100%;
-      height: auto;
-    }
+  > .card-img {
+    width: 100%;
+    height: auto;
   }
   .card-contents-wrapper {
     text-align: left;
